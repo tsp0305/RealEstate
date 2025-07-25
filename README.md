@@ -1,3 +1,0 @@
--> completed table migration for user , properties , rental , payment tables 
--> implemented authentication using auth
--> completed crud for these tables in backend alone
