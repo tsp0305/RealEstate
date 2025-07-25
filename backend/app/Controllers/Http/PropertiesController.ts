@@ -27,17 +27,28 @@ export default class PropertiesController {
             return { success: true, data: res }
         }
         catch (err) {
-            return { success: false, message: err }
+            throw err
         }
 
     }
 
-    public async updateProp(ctx) {
+    public async showBy(ctx) {
         try {
 
-            const payload = await ctx.request.validate(validateUpdate)
-
             const { id } = await ctx.request.validate(validateId)
+            const res = await this.repo.showBy(id)
+            return { success: true, data: res }
+
+        } catch (err) {
+
+        }
+    }
+
+    public async updateProp(ctx) {
+        try {
+            const { id } = await ctx.request.validate(validateId)
+
+            const payload = await ctx.request.validate(validateUpdate)
 
             const res = await this.repo.updateProp(payload, id)
 

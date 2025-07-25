@@ -2,6 +2,11 @@ import User from "App/Models/User";
 
 export default class UserRepository {
 
+    public async show() {
+        const res = await User.all()
+        return res
+    }
+
     public async signUp(payload) {
         const res = await User.create(payload)
 

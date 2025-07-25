@@ -18,3 +18,22 @@ logs
 .yarn/install-state.gz
 .pnp.*
 .yarn-integrity
+
+
+
+
+
+{
+  "name" : "pd",
+  "email" : "pd@gmail.com",
+  "password" : "123456",
+  "phone":"8148817750",
+  "role" : "owner"
+}
+{
+      "name": "Pg",
+      "type": "Apartment",
+      "price": "30000",
+      "location": "123 Main St, City",
+      "owner_id": 1
+    }

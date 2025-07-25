@@ -14,7 +14,6 @@ export default class UpdateValidator {
         ]),
 
         price: schema.string.optional([
-            rules.unsigned()
         ]),
         location: schema.string.optional([
             rules.maxLength(100)

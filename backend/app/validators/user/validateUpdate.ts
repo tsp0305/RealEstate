@@ -18,9 +18,9 @@ export default class userIdValidator {
         phone: schema.string.optional([
             rules.mobile()
         ]),
-        role: schema.enum.optional([
+        role: schema.enum.optional(
             ['tenant', 'owner', 'staff'] as const
-        ])
+        )
     })
 
     public messages: CustomMessages = {

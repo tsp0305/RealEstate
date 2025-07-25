@@ -1,5 +1,3 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
 import UserRepository from "App/repository/userRepo"
 import validateUser from "App/validators/user/validateUser"
 import validateLogin from "App/validators/user/validateLogin"
@@ -10,6 +8,16 @@ export default class UserController {
 
     private repo = new UserRepository()
 
+    public async showAll() {
+        try {
+            const res = await this.repo.show()
+            return { success: true, data: res }
+        }
+        catch (err) {
+            throw err
+        }
+    }
+
     public async signUp(ctx) {
         try {
             const payload = await ctx.request.validate(validateUser)
@@ -18,7 +26,6 @@ export default class UserController {
         }
         catch (err) {
             console.log(err)
-            throw err
         }
 
     }
@@ -27,10 +34,14 @@ export default class UserController {
         try {
             const payload = await ctx.request.validate(validateLogin)
             const { auth } = ctx
-            const res = await this.repo.login(payload, auth)
-            return res
-        }
-        catch (err) {
+            const { token, data } = await this.repo.login(payload, auth)
+
+            return {
+                success: true,
+                token,
+                user: data.serialize ? data.serialize() : data
+            }
+        } catch (err) {
             console.log(err)
             throw err
         }
@@ -58,23 +69,22 @@ export default class UserController {
 
     public async update(ctx) {
         try {
+
             const payload = await ctx.request.validate(validateUpdate)
             const id = await ctx.request.validate(validateId)
-            const res = await this.repo.update(payload, id)
+            const res = await this.repo.update(payload, id.id)
             return { success: true, data: res }
         }
         catch (err) {
-            return { success: false, message: err }
+            throw err
         }
     }
 
     public async delete(ctx) {
 
         try {
-
-            const payload = await ctx.request.validate(validateId)
-            const { id } = payload
-            const res = await this.repo.deleteMem(id)
+            const id = await ctx.request.validate(validateId)
+            const res = await this.repo.deleteMem(id.id)
             return { success: true, data: res }
         }
         catch (err) {

@@ -1,4 +1,3 @@
-import Notification from "@ioc:Verful/Notification"
 import Pay from "App/Mailers/Pay"
 import Payment from "App/Models/Payment"
 import Rented from "App/Models/Rented"

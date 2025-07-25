@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 
-export default class propValidator {
+export default class validateProp {
     constructor(protected ctx: HttpContextContract) { }
 
     public schema = schema.create({
@@ -15,7 +15,7 @@ export default class propValidator {
         ]),
 
         price: schema.string([
-            rules.unsigned()
+
         ]),
         location: schema.string([
             rules.maxLength(100)

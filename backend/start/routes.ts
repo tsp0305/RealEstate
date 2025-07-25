@@ -21,3 +21,5 @@
 
 import './routes/user'
 import './routes/prop'
+import './routes/rent'
+import './routes/pay'

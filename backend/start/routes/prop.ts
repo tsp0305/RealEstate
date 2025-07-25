@@ -3,10 +3,12 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
     Route.post('/', 'PropertiesController.postProp')
 
+    Route.get('/:id', 'PropertiesController.showBy')
+
     Route.get('/', 'PropertiesController.showAll')
 
-    Route.post('/:id', 'PropertiesController.update')
+    Route.put('/:id', 'PropertiesController.updateProp')
 
-    Route.delete('/:id', 'PropertiesController.delete')
+    Route.delete('/:id', 'PropertiesController.deleteProp')
 }).prefix('/prop')
 

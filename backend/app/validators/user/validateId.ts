@@ -20,6 +20,9 @@ export default class userIdValidator {
         'id.exists': 'user does not exists'
     }
 
+    public data = {
+        id: this.ctx.params.id
+    }
 
 
 }

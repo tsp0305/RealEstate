@@ -6,9 +6,8 @@ export default class PaymentsController {
     private repo = new payRepository()
     public async postPayment(ctx) {
         try {
-            const payload = ctx.request.body
+            const payload = ctx.request.body()
             const res = await this.repo.remind(payload)
-
             return { success: true, data: res }
         }
         catch (err) {
